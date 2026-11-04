@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">DeenPath</string>
+    <string name="title_activity_main">DeenPath</string>
+    <string name="package_name">org.salahguard.app</string>
+    <string name="custom_url_scheme">org.salahguard.app</string>
+</resources>

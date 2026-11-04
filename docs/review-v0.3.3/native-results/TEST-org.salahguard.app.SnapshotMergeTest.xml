@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.salahguard.app.SnapshotMergeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-29T17:28:00.712Z" hostname="DESKTOP-5LD3MQ7" time="0.03">
+  <properties/>
+  <testcase name="tombstoneAndAvatarMetadataSurviveUnrelatedSettingsChange" classname="org.salahguard.app.SnapshotMergeTest" time="0.027"/>
+  <testcase name="newEditSurvivesBackgroundAcknowledgment" classname="org.salahguard.app.SnapshotMergeTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

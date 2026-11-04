@@ -1,0 +1,28 @@
+# v0.2.0 limits and unverified boundaries
+
+The native implementations compile and are covered where possible by JVM, TypeScript, browser and SQLite DDL/data-preservation tests. They have not been exercised on a connected physical Android phone during this update. A successful build does not prove notification delivery, audible playback, overlay delivery, real Android SQLite migration behavior, or live API security.
+
+## Notifications and overlays
+
+- AlarmManager now has one dispatcher entry regardless of the number of stored prayer/routine reminder items. Legacy alarms are cancelled on upgrade. WorkManager renews the SQLite plan. OEM battery policies, exact-alarm permission denial, notification permission, channels, DND and force-stop can still suppress or delay delivery.
+- Android's native notification-sound picker is implemented. Sound changes use new stable channel identities; Android controls actual playback. Notification volume, the selected Silent entry, silent app mode, channel blocks and DND remain authoritative. Custom sound-provider URI availability after a reboot depends on the provider and granted access; system catalog sounds are the most reliable. No media playback is used to bypass notification settings.
+- A test reminder is scheduled about fifteen seconds ahead and contains a real verified-source Quran excerpt and chosen translation. The title identifies it as a test. A successful scheduling response is not a delivery or playback receipt. The notification must be expanded to read long text; the phone may hide text on the lock screen for privacy.
+- The native application overlay requires explicit app opt-in and Android's Display over other apps permission. It is dismissible, uses a short-lived declared foreground service and stops after at most ninety seconds. It does not lock the device or draw over the lock screen. Restricted foreground starts, denied permissions, and short landscape displays use notification fallback. Instagram/YouTube/locked/reboot behavior must be checked on the owner's phone using V0.2.0-UPDATE.md.
+- No Accessibility Service, continuous usage monitor or Usage Access permission is installed. Inferring newly opened apps via UsageStats polling was not adopted; no app usage data is collected/uploaded. An app-aware emergency exception list therefore is not implemented.
+- Android 14+ special-use foreground service declarations are included; Google Play distribution would need the applicable declaration/review. This release is prepared for sideloading/GitHub, not claimed Play-approved.
+
+## Sync, files and accounts
+
+- WorkManager background sync is network-constrained, deferred and retried with exponential backoff. It does not run a permanent foreground service. It cannot bypass force-stop, battery restrictions or connectivity. Foreground and background use one sync lock, idempotent operations and three-way snapshot merging.
+- A late completion can revise the derived Freeze Point ledger. Concurrent counter edits across devices require explicit conflict resolution; taps are not silently added together. Device-local sound URIs are not synchronized to other devices.
+- File transfers retry the whole file, with an 8 MiB client ceiling. The server checks ownership, MIME and quota, but does not include an antivirus service. Private SQLite/documents are protected by the Android sandbox; only session credentials use Keystore encryption. No claim is made for rooted/compromised phones.
+- Native PDF navigation, bounded-memory zoom, saved page/zoom/scroll and routine completion are implemented; encrypted/corrupt/complex PDFs may fail safely. Uploaded layouts and PDF paper colors are preserved. Images use the app reader's zoom/scroll. Physical low-memory and document tests remain unverified.
+- Email editing requires the current password and resets verification; reset/verification delivery still needs configured PHP mail. Live Namecheap authentication, SQL migration/import, cross-user access, quotas, account deletion and mail are not tested without the private hosting configuration. No production password or signing key has been requested or embedded.
+- Existing schema installation SQL is for a fresh empty existing database only. v0.1.0 → v0.2.0 has no MySQL schema change: update the private source, keep production.php, and never re-import/drop existing user tables. SQLite schema 1/2 → 3 is additive.
+
+## Content, language and release
+
+- Rasikh documentation was unavailable again. Its endpoints/authentication, limits, Hadith grading, licensing and offline cache terms remain unverified. No guessed Rasikh endpoint or fabricated Hadith is included. The reminder collection is fifteen unmodified Tanzil Quran verses with verified-source English and Urdu translations, not a complete Quran/Hadith library.
+- Preserve CONTENT-LICENSE.txt and noncommercial translation terms. Original Arabic and translation strings are not rewritten. Vendor/Android sound titles remain system-provided names. All base/new UI dictionaries have English/Urdu/Arabic entries; unfamiliar technical errors use a localized generic message. A native-language editorial review and TalkBack/font-scaling checks remain recommended qualification work.
+- App branding follows app appearance; ordinary launcher icon changes across light/dark are launcher/system-dependent. Android 13+ monochrome themed icon assets are provided.
+- This is a debug build using the existing test signer. Release signing and GitHub publication are manual, private steps. The old v0.1.0 artifacts remain backed up. Never uninstall to upgrade unless you have intentionally exported/synchronized everything and accept losing unsynchronized app-private data.

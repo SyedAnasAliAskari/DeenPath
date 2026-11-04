@@ -1,0 +1,4 @@
+﻿package: name='org.salahguard.app' versionCode='7' versionName='0.3.4' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'
+sdkVersion:'29'
+targetSdkVersion:'36'
+application-label:'DeenPath'

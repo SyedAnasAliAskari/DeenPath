@@ -1,0 +1,190 @@
+{
+  "version": 1,
+  "note": "Hadith Arabic is an attributed excerpt. English and Urdu are app-authored meaning summaries, not full literal translations. Quran text and translation credits remain in quran.json.",
+  "entries": [
+    {
+      "id": "quran:2:153",
+      "kind": "quran",
+      "ref": "2:153",
+      "themes": [
+        "prayer",
+        "hope"
+      ],
+      "source": "https://tanzil.net/#2:153"
+    },
+    {
+      "id": "quran:2:286",
+      "kind": "quran",
+      "ref": "2:286",
+      "themes": [
+        "hope"
+      ],
+      "source": "https://tanzil.net/#2:286"
+    },
+    {
+      "id": "quran:4:103",
+      "kind": "quran",
+      "ref": "4:103",
+      "themes": [
+        "prayer"
+      ],
+      "source": "https://tanzil.net/#4:103"
+    },
+    {
+      "id": "quran:7:156",
+      "kind": "quran",
+      "ref": "7:156",
+      "themes": [
+        "hope",
+        "forgiveness"
+      ],
+      "source": "https://tanzil.net/#7:156"
+    },
+    {
+      "id": "quran:20:14",
+      "kind": "quran",
+      "ref": "20:14",
+      "themes": [
+        "prayer"
+      ],
+      "source": "https://tanzil.net/#20:14"
+    },
+    {
+      "id": "quran:29:45",
+      "kind": "quran",
+      "ref": "29:45",
+      "themes": [
+        "prayer"
+      ],
+      "source": "https://tanzil.net/#29:45"
+    },
+    {
+      "id": "quran:31:17",
+      "kind": "quran",
+      "ref": "31:17",
+      "themes": [
+        "prayer"
+      ],
+      "source": "https://tanzil.net/#31:17"
+    },
+    {
+      "id": "quran:39:53",
+      "kind": "quran",
+      "ref": "39:53",
+      "themes": [
+        "hope",
+        "forgiveness"
+      ],
+      "source": "https://tanzil.net/#39:53"
+    },
+    {
+      "id": "quran:40:60",
+      "kind": "quran",
+      "ref": "40:60",
+      "themes": [
+        "hope",
+        "prayer"
+      ],
+      "source": "https://tanzil.net/#40:60"
+    },
+    {
+      "id": "quran:66:8",
+      "kind": "quran",
+      "ref": "66:8",
+      "themes": [
+        "forgiveness"
+      ],
+      "source": "https://tanzil.net/#66:8"
+    },
+    {
+      "id": "quran:93:3",
+      "kind": "quran",
+      "ref": "93:3",
+      "themes": [
+        "hope"
+      ],
+      "source": "https://tanzil.net/#93:3"
+    },
+    {
+      "id": "quran:94:5",
+      "kind": "quran",
+      "ref": "94:5",
+      "themes": [
+        "hope"
+      ],
+      "source": "https://tanzil.net/#94:5"
+    },
+    {
+      "id": "quran:94:6",
+      "kind": "quran",
+      "ref": "94:6",
+      "themes": [
+        "hope"
+      ],
+      "source": "https://tanzil.net/#94:6"
+    },
+    {
+      "id": "quran:99:7",
+      "kind": "quran",
+      "ref": "99:7",
+      "themes": [
+        "prayer",
+        "hope"
+      ],
+      "source": "https://tanzil.net/#99:7"
+    },
+    {
+      "id": "hadith:bukhari:6464",
+      "kind": "hadith",
+      "ref": "Sahih al-Bukhari 6464",
+      "themes": [
+        "prayer"
+      ],
+      "source": "https://sunnah.com/bukhari:6464",
+      "grade": "Sahih",
+      "arabicExcerpt": "وَأَنَّ أَحَبَّ الأَعْمَالِ أَدْوَمُهَا إِلَى اللَّهِ، وَإِنْ قَلَّ",
+      "enSummary": "Choose sincere actions you can maintain. Consistent good deeds, even small ones, are beloved to Allah.",
+      "urSummary": "نیک کام اخلاص کے ساتھ مستقل کریں۔ اللہ کو مسلسل نیک اعمال پسند ہیں، چاہے وہ تھوڑے ہوں۔"
+    },
+    {
+      "id": "hadith:muslim:2747a",
+      "kind": "hadith",
+      "ref": "Sahih Muslim 2747a",
+      "themes": [
+        "hope",
+        "forgiveness"
+      ],
+      "source": "https://sunnah.com/muslim:2747a",
+      "grade": "Sahih",
+      "arabicExcerpt": "لَلَّهُ أَشَدُّ فَرَحًا بِتَوْبَةِ عَبْدِهِ حِينَ يَتُوبُ إِلَيْهِ",
+      "enSummary": "Allah welcomes His servant’s sincere repentance with great joy. Turn back to Him with hope.",
+      "urSummary": "بندہ سچی توبہ کرکے اللہ کی طرف لوٹتا ہے تو اللہ بہت خوش ہوتا ہے۔ امید کے ساتھ اس کی طرف رجوع کریں۔"
+    },
+    {
+      "id": "hadith:muslim:2754",
+      "kind": "hadith",
+      "ref": "Sahih Muslim 2754",
+      "themes": [
+        "hope"
+      ],
+      "source": "https://sunnah.com/muslim:2754",
+      "grade": "Sahih",
+      "arabicExcerpt": "لَلَّهُ أَرْحَمُ بِعِبَادِهِ مِنْ هَذِهِ بِوَلَدِهَا",
+      "enSummary": "Allah’s mercy towards His servants exceeds a mother’s compassion for her child.",
+      "urSummary": "اللہ اپنے بندوں پر ایک ماں کی اپنے بچے پر شفقت سے بھی زیادہ رحم کرنے والا ہے۔"
+    },
+    {
+      "id": "hadith:bukhari:527",
+      "kind": "hadith",
+      "ref": "Sahih al-Bukhari 527",
+      "themes": [
+        "prayer"
+      ],
+      "source": "https://sunnah.com/bukhari:527",
+      "grade": "Sahih",
+      "arabicExcerpt": "الصَّلاَةُ عَلَى وَقْتِهَا",
+      "enSummary": "The Prophet named prayer at its appointed time among the deeds most beloved to Allah.",
+      "urSummary": "نبی کریم ﷺ نے وقت پر نماز ادا کرنے کو اللہ کے محبوب ترین اعمال میں شمار فرمایا۔"
+    }
+  ]
+}

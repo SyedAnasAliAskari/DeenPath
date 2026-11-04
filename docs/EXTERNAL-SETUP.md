@@ -1,0 +1,39 @@
+# External setup (deferred by owner)
+
+Live hosting deployment, real Google login and live AI calls are not enabled. Continue using guest mode and offline features. Do not put API secrets in deployment.json, the APK, source archives or chat. The approved future endpoint is https://lendafile.com/salahguard/api.php. Keep the existing LendAFile files and database untouched.
+
+## PHP and database
+
+Use the existing private PHP directory outside all public document roots. Back up its configuration, upload storage and database before deployment. On an existing installation apply 003_deenpath.sql if not already recorded, then 004_economy.sql and 005_bilingual_stories.sql; never re-import install.sql over an existing database. The new migration adds normalized economy, card, moderation, generation and Google identity/challenge tables without replacing existing worship records. Keep a database backup for rollback; restoring old source alone cannot roll back purchases. Do not run destructive down-migrations.
+
+Deploy private src/, composer.json and composer.lock, and run `composer install --no-dev --prefer-dist --classmap-authoritative` in the private directory (or build vendor locally and upload it privately). PHP 8.2+, PDO MySQL, OpenSSL, cURL, mbstring and fileinfo are required. Composer can use the zip extension or an unzip tool. Google verification additionally uses the explicitly required phpseclib v3 dependency. Keep storage/auth-cache writable by PHP and inaccessible over HTTP. Retain real config/production.php and uploaded files. Copy only the public api.php wrapper into the domain's /salahguard/ directory and confirm its private bootstrap path. Production HTTPS remains mandatory.
+
+Configuration: copy the documented economy prices/rewards and cards settings from config/example.php into the real private configuration. Admin moderation is disabled until explicit authenticated account UUIDs are added to cards.adminUsers. Put artwork in cards.artDirectory outside document roots; only validated image responses pass through the public endpoint. No administrator identity comes from client JSON. The card library starts empty; only independently reviewed definitions and artwork can be distributed. A missing verified library rejects pack purchases without spending Gems.
+
+## Optional Google sign-in
+
+Create Google OAuth clients in one Google Cloud project: an Android client for package `org.salahguard.app` with the certificate SHA-1 of the APK actually installed, and a Web client for the backend audience. Configure google_web_client_id in the private PHP configuration with the Web client ID. The Android Credential Manager receives this public client ID from the HTTPS backend. A Google client secret is not embedded in Android or needed by this ID-token flow.
+
+Current development certificate SHA-1: `A1:55:16:EB:F3:97:58:16:8C:67:22:3A:48:2B:AA:EC:C0:53:F6:32`.
+Current development certificate SHA-256: `3B:6D:1D:3A:4C:7B:5A:85:C9:3C:DF:24:87:48:34:B8:75:B9:E4:ED:17:D0:B7:B4:0E:E2:44:A3:EE:0D:D5:5F`.
+Production signing may use a different certificate; register its actual fingerprints before release. Never replace or publish private signing keys. Configure the OAuth consent screen/test users as required by Google. No phone number or birthday is required by this login.
+
+The backend uses the official Google auth library, cached signing certificates, audience/issuer/expiry checks and a five-minute, one-use nonce. A matching email never silently links an existing password account: sign in to the existing profile and use Link Google account. Guest progress is retained by the existing owner-adoption path and reconciled from stable completion IDs. Google identity does not grant Gemini access. Actual consent/account selection, successful login and reinstall recovery need a configured OAuth project and are still untested live.
+
+## AI cards
+
+See AI-CARD-PROVIDER-RESEARCH.md for current Cloudflare research and qualification gaps. Server Gemini/Cloudflare provider credentials, a selected Gemini model, confirmed free-tier accounts and private artwork storage are still needed. Do not copy device Guidance credentials to hosting. No paid billing has been activated. No Cloudflare sample has been generated or qualified. The server adapters and budgeted generation worker are implemented and tested with synthetic responses; live model behavior and the published content library still need qualification. Keep cards.providers.enabled=false until ready. In the private configuration set cards.providers.gemini.key/model and cards.providers.cloudflare.key/accountId. Set freeTierConfirmed only after confirming the corresponding account/project has the intended free plan and no approved paid use is being enabled. The code does not activate billing.
+
+An explicitly allowlisted administrator can queue a topic with POST /v1/cards/admin/generate using title/category/rarity. Configure a cPanel cron job to run private `bin/generate-cards.php`; one job is processed per invocation. Default daily limits are five text requests, five images and 2,000 reserved image Neurons. The worker conservatively reserves 400 image Neurons per attempt for bounded dimensions/steps; actual usage is provider-dependent and may be lower. Reservations are retained on failure, preventing retries from evading the cap. Existing verified cards remain reusable without calling providers. Drafts go to awaiting_review. Both complete English and proper Urdu editions, reliable references, and the exact symbolic artwork require independent administrator review before publication. The administrator-only Library review screen supports correction, approval, regeneration and withdrawal. Saving corrections clears both language approvals. No draft automatically becomes public. Never expose the CLI worker over HTTP.
+
+## Release checks
+
+Before publishing: repeat PHP/database integration tests, app/native/browser regressions, real configured Google login/link/guest migration, interrupted pack purchase/reveal/sync, signed-out privacy, report moderation, and actual Android locked/background delivery on the Infinix. The latter remains affected by OEM background suspension despite standard battery permissions; do not label it fixed from foreground tests.
+
+## Bilingual stories, cache and Android voices
+
+Apply migration 005 after 004. Existing definitions/copies remain intact; older short editions are retained for existing ownership, but new distribution requires a complete independently reviewed English/Urdu edition. No synthetic test stories are published. The public library endpoint returns catalog metadata; detail requests are limited to three selected stories. Owned copies sync separately. A new pack reserves its three selections before downloading missing stories, then commits exactly one debit with its three copies. Failed downloads keep the selection and spend no Gems.
+
+Android SQLite schema 5 adds retained owned-card text storage without deleting records, operations or reading positions. Full stories are separate from frequently rewritten app snapshots. Browser stories use IndexedDB. Public artwork uses a bounded cache (64 MiB Android / 32 MiB browser); evicting an image never deletes card ownership or story text. An evicted image can be downloaded again. The APK contains no global story bank or narration audio.
+
+Narration uses installed Android TTS voices, preferring offline voices. If only an installed network voice is available, the reader explains that it needs internet; it does not silently install voice data. Android handles voice installation only after the user chooses Install Voice. Urdu support depends on the selected engine. A missing Urdu voice is a supported fallback, not a promise that every engine can install Urdu. The reader pauses on background/audio-focus loss and resumes at the current sentence. No paid narration service is configured.

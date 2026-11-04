@@ -1,0 +1,28 @@
+> Superseded scope, 2026-11-04: the latest owner request retires Garden and Freeze Points UI/awards in favor of Gems and My Collection. Historical worship/private records and legacy balances remain preserved; no invented conversion is performed. Card stories now require full English and Urdu editions, not short descriptions. See V0.4.0-RELEASE.md and V0.4.0-TESTING.md for the current delivery status.
+
+# DeenPath expansion implementation plan
+
+Baseline: v0.3.8 (11), React 19 / TypeScript / Vite / Capacitor 8, native Kotlin/Java Android, SQLite snapshot + queued record sync, encrypted private records, PHP 8.2+ / MySQL backend. Existing RewardEngine and progress.ts implement Freeze Points, which must remain separate from Gems. Gemini guidance is a native, user-configured provider; its private device credentials will not be copied into a backend. The PHP backend has working email authentication, bearer sessions, record/file sync, validation and rate limits; it is not a stub. Hosting deployment remains deferred by direct user instruction.
+
+Rollback: this folder has no Git repository. The verified v0.3.8 source/APK artifacts are preserved in deliverables/v0.3.8 and copied under .tools/rollback/v038-before-expansion before edits. Existing secrets, keys and user data are excluded from source archives. No existing app data will be cleared.
+
+## Order and acceptance
+
+1. Finish current reminder audit: timed-only 15/10/1 phases, no Qaza alerts, rotating sourced readings. Automated checks passed (87 TS, 75 native, 42 browser). Device background delivery remains blocked by kernel suspension despite a foreground service. Standard battery exemption and Allow Background Usage are enabled. Further OEM power configuration/retest remains required; do not claim this fixed.
+2. Charity and penalty deadlines: optional amount/currency, encrypted charity task, 24 hours from creation, five private notifications at +4/+8/+12/+16/+20 hours; completion/correction/deletion cancels future reminders. No payment processing, expiry does not erase obligations or claim completion. Existing tasbih/nafl penalties receive the same deadlines for newly created tasks. Test JS/native parity and privacy-safe schedule metadata.
+3. Economy foundation: additive normalized MySQL migrations and versioned local economy state; derive idempotent completion reward claims, never accept client balances. Corrections reverse eligible claims without duplicate reward farming; missing activities earn zero. Native completion refresh must project rewards without needing UI foreground. Configurable initial 10/8/5/5/5 rewards; separate app engagement points from religious merit and existing Freeze Points.
+4. Shop: transactional offline purchases, Theme Studio unlock, per-apply costs, free default light/dark, preview/apply, accessible palette calculation, built-in/user wallpapers, seasonal backgrounds and battery-conscious effects/mixer with reduced-motion support.
+5. Cards: global definitions/artwork separate from owned copies, verified seed catalog, per-draw rarity weights, three distinct cards per 500-gem purchase, saved purchase before animation, interruption-safe face-down reveal and story flip, duplicate ownership without refund/exchange.
+6. AI: reuse provider transport patterns server-side; schema-validated Gemini drafts, queued budgeted generation, Cloudflare model/terms/free allowance research, real image sample only with configured credentials, no paid billing activation. Generated references require independent moderator verification; no unverified content enters distribution. Symbolic/environmental art only for sensitive figures.
+7. Moderation: authenticated distinct reporter dedupe, configurable five-report threshold, critical review queue, admin approve/correct/regenerate/withdraw, preserved ownership/audit, withdrawn cards hidden rather than deleted.
+8. Accounts/sync: retain guest use and current auth, add Google identity with server validation and deployment config, safe guest association, authoritative gem purchases/claims, cross-device reconciliation and offline outbox replay.
+9. Backend integration: authenticated endpoints, transaction locks/idempotency, prepared queries, indexes, secure artwork storage, bounded provider calls and queues, rate limits, configuration and optional AI admin controls. No live schema changes without authorized deployment.
+10. Qualification/delivery: tests per phase, regression UI/native/PHP/SQLite, source/APK/package verification, additive migration + rollback instructions, environment examples and candid production-readiness report.
+
+## External configuration boundaries
+
+Live hosting access remains deferred. Google OAuth web/Android client configuration and server-side Gemini/Cloudflare credentials are needed for actual external tests. No credentials have been provided for these new server integrations. Browser/device private API keys must never be exposed in APK/source or transmitted to hosting automatically.
+
+Cloudflare preliminary research (2026-11-03): official Workers AI pricing lists 10,000 free Neurons/day, shared across models and resetting at 00:00 UTC. FLUX.1 schnell is a candidate; model page documents 1–8 steps and base64 image output. Some other models require paid billing. Image quality, exact account eligibility, usage and output rights must be checked before enabling generation. No live sample or paid plan has been activated.
+
+Sources: https://developers.cloudflare.com/workers-ai/platform/pricing/ ; https://developers.cloudflare.com/workers-ai/models/flux-1-schnell/ ; https://developers.cloudflare.com/changelog/post/2026-07-28-models-require-workers-paid/

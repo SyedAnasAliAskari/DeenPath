@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.salahguard.app.PrayerActionsTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-29T22:34:26.651Z" hostname="DESKTOP-5LD3MQ7" time="0.07">
+  <properties/>
+  <testcase name="schedulerSideEffectsNeverHoldTheSnapshotMonitor" classname="org.salahguard.app.PrayerActionsTest" time="0.005"/>
+  <testcase name="prayedIsExplicitValidatedAndIdempotent" classname="org.salahguard.app.PrayerActionsTest" time="0.026"/>
+  <testcase name="savedWindowSurvivesChangedCalculationPayload" classname="org.salahguard.app.PrayerActionsTest" time="0.004"/>
+  <testcase name="rejectsAmbiguousQazaIdentity" classname="org.salahguard.app.PrayerActionsTest" time="0.001"/>
+  <testcase name="sensorMathUsesTrueNorthAndDisplayRotation" classname="org.salahguard.app.PrayerActionsTest" time="0.002"/>
+  <testcase name="snoozeAndCloseCannotWriteWorship" classname="org.salahguard.app.PrayerActionsTest" time="0.002"/>
+  <testcase name="specificQazaIsExactlyOnceAndNeverOnTime" classname="org.salahguard.app.PrayerActionsTest" time="0.004"/>
+  <testcase name="staleNotificationAndCrossAccountActionsAreRejected" classname="org.salahguard.app.PrayerActionsTest" time="0.002"/>
+  <testcase name="calculationChangesInvalidateEventsButSoundAndLanguageDoNot" classname="org.salahguard.app.PrayerActionsTest" time="0.015"/>
+  <testcase name="refusesEarlyPrayer" classname="org.salahguard.app.PrayerActionsTest" time="0.002"/>
+  <testcase name="refusesEarlyQaza" classname="org.salahguard.app.PrayerActionsTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

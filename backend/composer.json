@@ -1,0 +1,13 @@
+{
+  "name": "deenpath/private-backend",
+  "type": "project",
+  "require": {
+    "php": "^8.2",
+    "google/auth": "^1.50",
+    "symfony/cache": "^7.3",
+    "phpseclib/phpseclib": "^3.0"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

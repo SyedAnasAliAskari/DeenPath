@@ -1,0 +1,604 @@
+/* Calm screens: one main task, optional detail, and controls that never share a grid cell. */
+.tool-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-block: 24px;
+}
+.tool-actions > button {
+  flex: 1 1 170px;
+  min-height: 48px;
+}
+.dp-panel > .toggle {
+  margin-block: 20px;
+}
+.dp-panel > button + button,
+.dp-panel form > button + button {
+  margin-inline-start: 12px;
+}
+.dp-panel > p,
+.dp-entry > p {
+  margin-block: 16px;
+}
+.dp-panel > button + p,
+.routine .actions + p {
+  margin-top: 20px;
+}
+.routine.card {
+  padding: 24px;
+}
+.routine-schedule-note {
+  margin-block: 24px 32px;
+  line-height: 1.8;
+  max-width: 65ch;
+}
+.penalty-fields {
+  display: grid;
+  gap: 18px;
+  padding-block: 16px;
+}
+.notice + .dp-tabs {
+  margin-top: 24px;
+}
+.routine-top > div:nth-child(2) {
+  min-width: 0;
+}
+.routine-top h3 {
+  overflow-wrap: anywhere;
+}
+.routine > .muted {
+  flex-wrap: wrap;
+  gap: 10px;
+  line-height: 1.7;
+  margin-block: 22px;
+}
+.routine .actions {
+  margin-bottom: 18px;
+}
+.routine .actions:last-child {
+  margin-bottom: 0;
+}
+.routine small,
+.routine .notice {
+  line-height: 1.8;
+}
+.dua-reading {
+  white-space: pre-wrap;
+  font-size: 1.2rem;
+  line-height: 2;
+  padding-block: 20px;
+  overflow-wrap: anywhere;
+}
+.reminder-setup {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+.permission-row {
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.permission-row small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+}
+#private-editor {
+  scroll-margin-top: 24px;
+}
+.dp-compass {
+  width: min(250px, 100%);
+  aspect-ratio: 1;
+  height: auto;
+  margin: 32px auto 24px;
+}
+.compass-dial {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.2s linear;
+}
+.compass-dial span {
+  position: absolute;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.compass-n {
+  top: 12px;
+  left: calc(50% - 4px);
+}
+.compass-e {
+  right: 14px;
+  top: calc(50% - 8px);
+}
+.compass-s {
+  bottom: 12px;
+  left: calc(50% - 4px);
+}
+.compass-w {
+  left: 12px;
+  top: calc(50% - 8px);
+}
+.dp-compass-arrow {
+  inset: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: inherit;
+  line-height: normal;
+  transition: transform 0.2s linear;
+}
+.dp-compass-arrow svg {
+  width: 65%;
+  height: 65%;
+}
+.dp-compass-center {
+  top: calc(50% - 6px);
+  left: calc(50% - 6px);
+  width: 12px;
+  height: 12px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.qibla-status {
+  text-align: center;
+  font-weight: 600;
+  color: var(--green);
+}
+@media (prefers-reduced-motion: reduce) {
+  .compass-dial,
+  .dp-compass-arrow {
+    transition: none;
+  }
+}
+[hidden] {
+  display: none !important;
+}
+main {
+  padding-bottom: 112px;
+}
+.page-heading {
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-block: 32px 28px;
+}
+.page-heading > div {
+  min-width: 0;
+  flex: 1 1 230px;
+}
+.page-heading h1 {
+  line-height: 1.25;
+}
+.page-heading p:not(.eyebrow) {
+  max-width: 48ch;
+  line-height: 1.7;
+}
+.page-heading .date-badge {
+  align-self: flex-start;
+  max-width: 100%;
+  white-space: normal;
+}
+.section-title {
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  align-items: center;
+}
+.section-title h2 {
+  flex: 1 1 160px;
+  min-width: 0;
+}
+.actions {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.primary,
+.secondary {
+  white-space: normal;
+  line-height: 1.4;
+  max-width: 100%;
+  text-align: center;
+}
+.dashboard-grid,
+.two-columns {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+.prayer-hero {
+  min-height: 225px;
+}
+.prayer-hero .hero-copy {
+  padding: 30px;
+}
+.prayer-hero .mosque {
+  opacity: 0.2;
+}
+.countdown {
+  font-size: clamp(32px, 7vw, 52px);
+}
+.settings-grid {
+  display: block;
+  max-width: 720px;
+}
+.settings-menu {
+  max-width: 720px;
+  padding: 8px 24px;
+}
+.settings-menu-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 76px;
+  padding: 22px 0;
+  background: none;
+  color: var(--text);
+  text-align: start;
+  border-bottom: 1px solid var(--line);
+}
+.settings-menu-row:last-child {
+  border: 0;
+}
+.settings-menu-row span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.settings-menu-row svg {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.settings-card {
+  padding: 28px;
+}
+.settings-card h2 {
+  margin-bottom: 26px;
+  line-height: 1.45;
+}
+.section-back {
+  margin-bottom: 24px;
+  min-height: 44px;
+}
+.dp-panel {
+  padding: 26px;
+  margin-bottom: 24px;
+}
+.dp-panel h2 {
+  line-height: 1.5;
+}
+.dp-disclosure {
+  padding: 0;
+}
+.dp-disclosure > summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  min-height: 76px;
+  padding: 22px 26px;
+  cursor: pointer;
+}
+.dp-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+.dp-disclosure > summary h2 {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+  min-width: 0;
+}
+.dp-disclosure > summary svg {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.dp-disclosure[open] > summary svg {
+  transform: rotate(180deg);
+}
+.disclosure-content {
+  padding: 0 26px 26px;
+}
+.dp-disclosure > summary:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 16px;
+}
+.dp-menu {
+  gap: 0;
+}
+.dp-menu > button {
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  min-height: 64px;
+  padding: 20px 0;
+  color: var(--text);
+}
+.dp-menu > button:last-child {
+  border: 0;
+}
+.dp-menu small {
+  display: none;
+}
+.dp-tabs {
+  gap: 10px;
+  margin-bottom: 26px;
+}
+.dp-tabs button {
+  padding: 12px 16px;
+}
+.dp-row {
+  gap: 16px;
+  line-height: 1.6;
+}
+.dp-row strong {
+  font-size: 0.88rem;
+}
+.dp-metrics {
+  gap: 16px;
+}
+.permission-row {
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.permission-row > span {
+  min-width: 0;
+  flex: 1 1 160px;
+}
+.permission-row > button {
+  flex: 0 1 auto;
+}
+.modal .close,
+.modal .modal-close {
+  position: absolute;
+  inset: 12px 12px auto auto;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  float: none;
+  transform: none;
+}
+.modal {
+  padding-top: 66px;
+}
+.modal > h2 {
+  padding-inline: 0;
+  margin-top: 0;
+}
+.modal .close ~ h2 {
+  padding-right: 0;
+}
+.toast {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 12px 14px 20px;
+  direction: ltr;
+  line-height: 1.6;
+}
+.toast > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  unicode-bidi: plaintext;
+}
+.toast > button {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  margin: 0;
+}
+.dp-celebration {
+  padding-right: 62px;
+}
+.dp-celebration .icon {
+  inset: 12px 12px auto auto;
+  width: 40px;
+  height: 40px;
+}
+@media (max-width: 900px) {
+  main {
+    padding-bottom: 110px;
+  }
+  .topbar {
+    gap: 16px;
+  }
+  .topbar .location {
+    display: none;
+  }
+  .page-heading {
+    margin-block: 28px 24px;
+  }
+  .page-heading .date-badge {
+    border: 0;
+    padding: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .prayer-grid {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .prayer-card,
+  .prayer-card.current {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: 'name time' 'status action';
+    gap: 10px 18px;
+    padding: 20px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: none;
+    background: var(--card);
+  }
+  .prayer-card:last-child {
+    border-bottom: 0;
+  }
+  .prayer-card .prayer-symbol {
+    display: none;
+  }
+  .prayer-card h3 {
+    grid-area: name;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    min-width: 0;
+  }
+  .prayer-card .prayer-time {
+    grid-area: time;
+    font-size: 18px;
+    margin: 0;
+    text-align: end;
+    white-space: nowrap;
+  }
+  .prayer-card .prayer-status {
+    grid-area: status;
+    justify-self: start;
+    align-self: center;
+    background: none;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: start;
+    padding: 0;
+    max-width: 100%;
+    white-space: normal;
+  }
+  .prayer-card .prayer-action {
+    grid-area: action;
+    justify-self: end;
+    width: auto;
+    max-width: 100%;
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 12px;
+    margin: 0;
+    padding: 9px 0 9px 12px;
+    border: 0;
+    background: none;
+    line-height: 1.5;
+  }
+  .prayer-card:has(.prayer-action:disabled) .prayer-action {
+    display: none;
+  }
+  .settings-card,
+  .dp-panel {
+    padding: 22px;
+  }
+  .dp-disclosure {
+    padding: 0;
+  }
+  .dp-disclosure > summary {
+    padding: 22px;
+  }
+  .disclosure-content {
+    padding: 0 22px 22px;
+  }
+  .field-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .modal {
+    padding: 66px 24px 28px;
+  }
+  .dp-tabs > button {
+    flex: 1 1 130px;
+  }
+  .actions > .primary,
+  .actions > .secondary {
+    flex: 1 1 160px;
+  }
+  .dp-row > strong {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}
+
+.calm-advanced {
+  border-top: 1px solid var(--line);
+  padding-block: 18px;
+  margin-block: 16px;
+}
+.calm-advanced > summary {
+  cursor: pointer;
+  min-height: 36px;
+  line-height: 1.6;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.calm-advanced > div,
+.calm-advanced > .dp-filters {
+  padding-top: 20px;
+}
+.calm-advanced .section-divider {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.notification-tests > .calm-advanced:first-child {
+  margin-top: 0;
+}
+
+.prayer-hero .hero-copy {
+  padding: 24px;
+}
+.prayer-hero {
+  min-height: 200px;
+}
+.prayer-hero .countdown {
+  font-size: 28px;
+  margin-top: 16px;
+  letter-spacing: 2px;
+}
+.prayer-hero .hero-copy h2 {
+  font-size: 34px;
+}
+.calm-advanced {
+  padding-block: 12px;
+  margin-block: 8px;
+}
+.notification-tests.section-divider {
+  border: 0;
+  padding-top: 0;
+  margin-top: 24px;
+}
+.notification-tests > .section-divider {
+  padding-top: 16px;
+  margin-top: 12px;
+}
+@media (max-width: 900px) {
+  .modal .field-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .modal .field-grid .field {
+    min-width: 0;
+  }
+  .empty.card {
+    padding: 24px;
+    min-height: 0;
+  }
+  .empty.card h3 {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 380px) {
+  .modal .field-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

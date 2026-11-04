@@ -1,0 +1,12 @@
+package org.salahguard.app
+import org.junit.Assert.*
+import org.junit.Test
+import org.json.*
+import java.time.*
+class PrayerReminderRulesTest {
+ private fun root()=JSONObject().put("records",JSONArray()).put("settings",JSONObject().put("enforcer",true).put("timezone","Asia/Karachi").put("lat",24.8607).put("lng",67.0011).put("adjustments",JSONArray("[0,0,0,0,0]")))
+ @Test fun prayerIsEligibleOnlyInsideItsOpenWindow(){val r=root();val w=PrayerWindows.calculate(LocalDate.parse("2026-11-02"),r.getJSONObject("settings")).first();val route="prayer:"+w.id;assertFalse(PrayerReminderRules.pending(r,route,w.start-1));assertTrue(PrayerReminderRules.pending(r,route,w.start));assertFalse(PrayerReminderRules.pending(r,route,w.end));assertFalse(PrayerReminderRules.pending(r,route,w.end+600000))}
+ @Test fun performedExemptAndSavedWindowsAreHonored(){val r=root();val w=PrayerWindows.calculate(LocalDate.parse("2026-11-02"),r.getJSONObject("settings")).first();val d=JSONObject().put("completedAt",Instant.ofEpochMilli(w.start+1000).toString());r.getJSONArray("records").put(JSONObject().put("entity","prayer_records").put("id",w.id).put("data",d));assertFalse(PrayerReminderRules.pending(r,"prayer:"+w.id,w.start+2000));d.remove("completedAt");d.put("status","na");assertFalse(PrayerReminderRules.pending(r,"prayer:"+w.id,w.start+2000));d.remove("status");d.put("windowEnd",Instant.ofEpochMilli(w.start+1500).toString());assertFalse(PrayerReminderRules.pending(r,"prayer:"+w.id,w.start+2000))}
+ @Test fun delayedAlarmAndLateSnoozeCannotBecomeQazaReminders(){val e=JSONObject().put("route","prayer:2026-11-02:Fajr").put("windowStart","2026-11-02T00:00:00Z").put("windowEnd","2026-11-02T01:00:00Z");assertTrue(PrayerReminderRules.eventInWindow(e,Instant.parse("2026-11-02T00:59:59Z").toEpochMilli()));assertFalse(PrayerReminderRules.eventInWindow(e,Instant.parse("2026-11-02T01:00:00Z").toEpochMilli()));assertFalse(PrayerReminderRules.eventInWindow(JSONObject().put("route","qaza:old"),0));assertFalse(PrayerReminderRules.eventInWindow(JSONObject().put("route","prayer:old"),0));assertTrue(PrayerReminderRules.eventInWindow(JSONObject().put("route","test"),0))}
+ @Test fun previousDateIshaIsNotQazaWhenItsWindowIsStillOpen(){val r=root();r.getJSONObject("settings").put("ishaEnd","fajr");val now=LocalDate.parse("2026-11-02").atStartOfDay(ZoneId.of("Asia/Karachi")).toInstant().toEpochMilli();assertTrue(PrayerReminderRules.pending(r,"prayer:2026-11-01:Isha",now));assertFalse(PrayerReminderRules.pending(r,"prayer:2026-11-01:Fajr",now))}
+}

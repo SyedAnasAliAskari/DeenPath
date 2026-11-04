@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.salahguard.app.SnapshotDocumentTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-29T17:28:00.704Z" hostname="DESKTOP-5LD3MQ7" time="0.005">
+  <properties/>
+  <testcase name="corruptNonemptyDataIsNotSilentlyReplaced" classname="org.salahguard.app.SnapshotDocumentTest" time="0.004"/>
+  <testcase name="freshInstallHasLocalScopeBeforeFirstSave" classname="org.salahguard.app.SnapshotDocumentTest" time="0.0"/>
+  <testcase name="existingScopeIsPreserved" classname="org.salahguard.app.SnapshotDocumentTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

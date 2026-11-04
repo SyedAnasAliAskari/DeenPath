@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.salahguard.app.WidgetModelTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-10-29T17:28:00.750Z" hostname="DESKTOP-5LD3MQ7" time="0.223">
+  <properties/>
+  <testcase name="gardenMatchesExistingSevenCompletionsPerStage" classname="org.salahguard.app.WidgetModelTest" time="0.021"/>
+  <testcase name="todayMissedOrQazaBreaksOverallStreakBeforeOtherPrayersAreDue" classname="org.salahguard.app.WidgetModelTest" time="0.091"/>
+  <testcase name="fridayDhuhrAndJummahUseTheSameSingleObligation" classname="org.salahguard.app.WidgetModelTest" time="0.015"/>
+  <testcase name="openPrayerPreservesPriorStreakUntilItsWindowEnds" classname="org.salahguard.app.WidgetModelTest" time="0.011"/>
+  <testcase name="recordedWindowsFeedNativeCountdownsAfterSettingsChange" classname="org.salahguard.app.WidgetModelTest" time="0.033"/>
+  <testcase name="nativeWindowsPreserveFridayAndConfiguredIshaBoundary" classname="org.salahguard.app.WidgetModelTest" time="0.002"/>
+  <testcase name="privateRecordsAndSecretsAreNeverProjected" classname="org.salahguard.app.WidgetModelTest" time="0.013"/>
+  <testcase name="gardenDoesNotDependOnPrayerCoordinatesOrTimezone" classname="org.salahguard.app.WidgetModelTest" time="0.001"/>
+  <testcase name="nativeWindowsHandleAdjustedTimesAndDstDates" classname="org.salahguard.app.WidgetModelTest" time="0.01"/>
+  <testcase name="nativeCompletionImmediatelyUpdatesWidgetCount" classname="org.salahguard.app.WidgetModelTest" time="0.004"/>
+  <testcase name="multiplePlantsShowRealAggregateGrowthInsteadOfResettingAtSevenTotalCompletions" classname="org.salahguard.app.WidgetModelTest" time="0.007"/>
+  <testcase name="fourKindsHaveHonestEmptyStates" classname="org.salahguard.app.WidgetModelTest" time="0.012"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

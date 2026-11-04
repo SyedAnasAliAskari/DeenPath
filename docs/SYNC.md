@@ -1,0 +1,33 @@
+# Local data and synchronization policy
+
+## Persistence
+
+On Android, Kotlin `SQLiteOpenHelper` owns `salahguard.db` (schema 3). Schema migration 1→2 creates saved reading positions; 2→3 adds native metadata without resetting records. The version-1 application snapshot is stored transactionally with indexed record/operation projections. It contains cached profile/settings, prayer calculations, prayer/Qaza history, routine schedules/completions, counter progress, local file metadata, pending operations, sync cursor and derived streak/wallet/garden information. Native alarms and PDF positions have separate indexed SQLite tables. File bytes live under app-private `files/documents/`; tokens are AES-GCM encrypted using an Android Keystore key outside the database. Android automatic app backup is disabled.
+
+The development browser uses versioned localStorage; its storage limits and security are not the Android storage model. Neither mode uploads local file paths or credentials as worship records.
+
+## Writes and retries
+
+Every worship edit saves locally before network work. Global UUIDs identify routines and operation envelopes. Prayer identity is `civil-date:prayer-name`; completion/counter identity is `routine-UUID:period-key`. These canonical keys prevent duplicate prayer/completion rows. Operations retain the last acknowledged integer version. Unsent mutations for the same record coalesce. A failed operation remains durable, with exponential backoff capped at one hour; manual retry overrides the delay.
+
+File imports retain private local bytes and a UUID. Uploads reuse the UUID and SHA-256 content identity, so an interrupted upload response can be retried without consuming duplicate quota. Local file deletions queue the cloud UUID and persist before removing local bytes. Upload failures do not stop prayer-history pushes. Downloads save their index after each file. Full resumable chunked upload/download is not implemented; an interrupted individual file retries from the beginning (8 MiB ceiling).
+
+Sync runs explicitly and while signed in/open, plus Android WorkManager network-constrained background work and a six-hour periodic catch-up. Foreground and background native sync share one lock and idempotent operations. Three-way snapshot merging preserves concurrent edits; per-device sound choices are not uploaded. Credentials rotate before sync. Queued operations push in order; then incremental changes pull in pages of 200. Each page/cursor saves together locally. The server serializes changes per account using a user row lock. It stores operation acknowledgments, change sequence numbers and deletion tombstones in the same transaction as each record mutation. A duplicate operation returns its previous acknowledgment. No financial or prayer rewards are trusted from the client.
+
+## Conflicts
+
+The backend compares the expected base version with the current row. A mismatch returns the current cloud record without applying the stale write. Sync Center shows local/cloud JSON and lets the owner explicitly choose Keep Local (new operation based on the cloud version) or Use Cloud. Prayer/counter/routine data are not silently resolved with last-write-wins. Choosing a counter value is an explicit correction; concurrent taps on different devices are not automatically additive. Do not operate the same counter simultaneously across devices unless you intend to review that conflict.
+
+Preferences sync except the API address, which is installation-local. A different account cannot reuse another account's local data: switching accounts requires exporting/clearing the installation after resolving pending changes. Logout clears the local credential and revokes the server session; local records remain deliberately available offline. Account deletion needs the current password and explicit DELETE confirmation and removes cloud rows/files and local records/documents.
+
+## Periods, streaks and the ledger
+
+Daily periods use the routine's stored time zone and default to midnight. An optional daily deadline shifts the 24-hour period: a 04:00 deadline labels 26 October's period from 26 October 04:00 until 27 October 04:00. Weekly periods begin Monday; monthly/yearly use Gregorian calendar boundaries; custom N-day periods anchor to the start date. Unscheduled counters use a lifetime period and have no scheduled streak or Freeze Point eligibility. Reminder weekday/month-day picks do not change the period key. Routine calendar fields are immutable after creation; make another routine to change the calendar and preserve the old history.
+
+Only **closed periods** enter finalized streak accounting. A daily voluntary routine earns one point for each run of seven actual consecutive successful scheduled days; skipped/frozen days break the earning run. Balance caps at three; an award while full is forfeited. Each eligible missed daily voluntary period spends one available point, preserving but not incrementing the streak, without fabricating a completion. Weekly/monthly/yearly/custom routines have independent period streaks but no freeze awards/spending. Prayer history is never an input to this wallet and cannot be erased or protected with points.
+
+The server deterministically replays closed periods in deadline timestamp order, breaking ties by routine UUID. It reconstructs the derived wallet/streak/garden/ledger snapshot inside one database transaction with the account row locked. Ledger event IDs are deterministic from user, routine, period and award/spend kind. Repeated processing cannot duplicate an award/spend. Late offline completions and deliberate corrections can revise historical spending and the current balance; this is necessary for multi-device consistency. Removing a routine removes its contribution from this derived view. The local engine follows the same rules for offline display; the cloud validates completion period identities/timestamps and remains authoritative after sync. These are self-reported worship records, not independent proof that an act occurred.
+
+## Restore and data loss
+
+Restore from Cloud requires the metadata queue to be resolved, resets the incremental cursor and replays cloud records. Restore Files downloads only the account's missing files through authenticated requests. Existing local file copies are preserved. A full local JSON export is useful for support/backup but this release does not import arbitrary exported snapshots; native app-private document bytes must also be backed up separately where allowed. Unsynchronized changes can be lost by uninstalling or clearing Android app data. The app warns about this explicitly.

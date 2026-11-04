@@ -1,0 +1,8 @@
+.tools
+.npm-cache
+node_modules
+dist
+android
+package-lock.json
+src/content
+test-results

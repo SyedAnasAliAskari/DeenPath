@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.salahguard.app.NativeContentTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-29T22:34:26.549Z" hostname="DESKTOP-5LD3MQ7" time="0.046">
+  <properties/>
+  <testcase name="arabicOnlyIsAnExplicitChoice" classname="org.salahguard.app.NativeContentTest" time="0.038"/>
+  <testcase name="englishAndUrduMeaningsAreIncludedInNotificationBody" classname="org.salahguard.app.NativeContentTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,505 @@
+/* v0.2: shared contrast and spacing across the existing application. */
+:root {
+  color-scheme: light;
+  --muted: #64756b;
+  --surface-raised: #f4f7f0;
+  --focus: #ae8a43;
+  --danger: #a33f36;
+  --success-bg: #eaf3e9;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #10221b;
+  --card: #192f25;
+  --text: #edf2e8;
+  --muted: #b0c1b4;
+  --line: #365044;
+  --green: #a7d4b4;
+  --light: #253e30;
+  --gold: #d1b778;
+  --surface-raised: #213a2d;
+  --focus: #e0c789;
+  --danger: #f1a69d;
+  --success-bg: #264936;
+}
+body,
+input,
+select,
+textarea {
+  color: var(--text);
+}
+button {
+  touch-action: manipulation;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+.card,
+.settings-card,
+.modal {
+  color: var(--text);
+}
+.icon {
+  width: 44px;
+  height: 44px;
+}
+.primary {
+  background: #256247;
+  color: #fff;
+}
+.secondary {
+  background: var(--card);
+  color: var(--green);
+}
+.danger {
+  color: var(--danger);
+}
+.avatar {
+  background: var(--light);
+  color: var(--green);
+}
+.settings-grid {
+  gap: 20px;
+  align-items: start;
+}
+.settings-card {
+  padding: 24px;
+}
+.settings-card h2 {
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+.settings-card .field {
+  margin: 16px 0;
+}
+.field-grid {
+  gap: 16px;
+  margin: 16px 0;
+}
+.field-grid .field {
+  margin: 0;
+}
+.field > label {
+  font-size: 13px;
+}
+.field input,
+.field select {
+  min-height: 48px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+.toggle {
+  min-height: 52px;
+  line-height: 1.65;
+  font-size: 13px;
+  gap: 16px;
+}
+.toggle > span {
+  flex: 1;
+}
+.toggle input {
+  flex-shrink: 0;
+}
+.actions {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.actions .primary,
+.actions .secondary {
+  min-height: 46px;
+}
+.settings-card .actions {
+  margin-top: 18px;
+}
+.muted {
+  font-size: 13px;
+  line-height: 1.8;
+}
+.notice {
+  color: var(--gold);
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+}
+.settings-card .notice {
+  margin: 18px 0;
+}
+.prayer-status {
+  background: var(--surface-raised);
+  color: var(--muted);
+}
+.prayer-status.ontime,
+.prayer-status.pending {
+  background: var(--success-bg);
+  color: var(--green);
+}
+[data-theme='dark'] .prayer-status.missed {
+  background: #4a342a;
+  color: #f0baa2;
+}
+.daily-summary,
+.prayer-card {
+  color: var(--text);
+}
+.progress-ring > div {
+  color: var(--text);
+}
+.sync-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  padding: 18px 0;
+}
+.sync-stats > div {
+  min-width: 0;
+}
+.sync-stats strong {
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+.sync-stats small {
+  font-size: 12px;
+  line-height: 1.5;
+}
+.connection-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border-radius: 20px;
+  padding: 7px 11px;
+  background: var(--surface-raised);
+  font-size: 12px;
+  color: var(--green);
+}
+.modal {
+  padding: 30px;
+  box-shadow: 0 20px 80px #0005;
+  max-height: calc(100dvh - 40px);
+  scroll-padding-bottom: 25px;
+}
+.modal .close {
+  width: 44px;
+  height: 44px;
+  top: 12px;
+  inset-inline-end: 12px;
+}
+.modal > h2 {
+  padding-inline-end: 30px;
+  margin-block: 8px 22px;
+  margin-inline: 0;
+  font-size: 25px;
+  line-height: 1.35;
+}
+.modal .actions {
+  margin-top: 22px;
+}
+.modal form > .primary {
+  margin-top: 8px;
+}
+.toast {
+  bottom: calc(28px + env(safe-area-inset-bottom));
+  line-height: 1.65;
+  padding: 14px 16px;
+  max-width: min(92vw, 600px);
+  background: var(--text);
+  color: var(--card);
+  box-shadow: 0 8px 32px #0004;
+}
+.toast button {
+  height: 44px;
+  width: 44px;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+.busy {
+  pointer-events: none;
+}
+.brand-symbol {
+  display: inline-block;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.brand-symbol img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+.brand-symbol .logo-dark {
+  display: none;
+}
+[data-theme='dark'] .brand-symbol .logo-light {
+  display: none;
+}
+[data-theme='dark'] .brand-symbol .logo-dark {
+  display: block;
+}
+.brand-mark {
+  background: none;
+  width: auto;
+  height: auto;
+}
+.brand small {
+  font-size: 10px;
+  letter-spacing: 0;
+}
+.mobile-brand {
+  gap: 8px;
+}
+.mobile-brand .brand-symbol {
+  width: 34px;
+  height: 34px;
+}
+.auth-brand {
+  width: 62px;
+  height: 62px;
+  margin-bottom: 10px;
+}
+.loading .brand-symbol {
+  width: 80px;
+  height: 80px;
+}
+.settings-brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.image-reader {
+  padding: 16px;
+  overflow: auto;
+}
+.image-reader img {
+  display: block;
+  width: auto;
+  max-width: none;
+  transform-origin: top left;
+}
+.reader header {
+  flex-wrap: wrap;
+  gap: 12px;
+  min-height: 76px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.reader header h3 {
+  flex: 1;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+.reader .zoom-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+.reader input[type='range'] {
+  width: 140px;
+  min-height: 36px;
+  padding: 0;
+}
+.reader iframe {
+  background: var(--bg);
+}
+.section-divider {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.notification-tests .actions {
+  margin-top: 12px;
+}
+.notification-tests p {
+  margin-top: 12px;
+}
+.subheading {
+  font-size: 14px;
+  margin: 20px 0 12px;
+}
+.permission-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+.permission-row strong {
+  font-size: 12px;
+  color: var(--green);
+}
+[dir='rtl'] {
+  font-family: 'Noto Sans Arabic', Tahoma, 'Segoe UI', Arial, sans-serif;
+}
+[dir='rtl'] h1 {
+  font-family: inherit;
+  font-size: 29px;
+  line-height: 1.6;
+}
+[dir='rtl'] .eyebrow {
+  letter-spacing: 0;
+  font-size: 12px;
+}
+[dir='rtl'] .modal h2,
+[dir='rtl'] .settings-card h2 {
+  line-height: 1.8;
+}
+[dir='rtl'] .page-heading p {
+  line-height: 1.9;
+}
+@media (max-width: 650px) {
+  main {
+    padding: env(safe-area-inset-top) 18px calc(106px + env(safe-area-inset-bottom));
+  }
+  .page-heading {
+    margin: 26px 0 22px;
+  }
+  .page-heading h1 {
+    font-size: 28px;
+  }
+  .settings-grid {
+    gap: 16px;
+  }
+  .settings-card {
+    padding: 22px 20px;
+  }
+  .settings-card h2 {
+    font-size: 18px;
+  }
+  .sidebar {
+    height: calc(74px + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .sidebar nav button {
+    padding-top: 12px;
+    min-height: 72px;
+    gap: 6px;
+  }
+  .sidebar nav span {
+    font-size: 10px;
+  }
+  .toast {
+    bottom: calc(86px + env(safe-area-inset-bottom));
+    width: calc(100% - 28px);
+  }
+  .modal-backdrop {
+    padding: 16px 12px;
+  }
+  .modal {
+    padding: 26px 20px;
+    max-height: calc(100dvh - 32px);
+  }
+  .modal .close {
+    top: 9px;
+    inset-inline-end: 9px;
+  }
+  .field-grid {
+    gap: 14px;
+  }
+  .field input,
+  .field select {
+    min-width: 0;
+    width: 100%;
+  }
+  .prayer-card {
+    gap: 10px;
+    grid-template-columns: 28px 1fr 80px 84px;
+  }
+  .prayer-action {
+    min-height: 36px;
+  }
+  .file-row {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .file-row > div {
+    min-width: 150px;
+  }
+  .file-row .icon {
+    width: 44px;
+    height: 44px;
+  }
+  .sync-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .settings-card .actions .secondary,
+  .notification-tests .actions button {
+    flex: 1 1 auto;
+  }
+  .reader header {
+    padding-top: calc(10px + env(safe-area-inset-top));
+  }
+  .reader .zoom-control {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .reader .zoom-control input {
+    width: 65%;
+  }
+}
+@media (max-width: 360px) {
+  main {
+    padding-inline: 14px;
+  }
+  .settings-card {
+    padding: 20px 16px;
+  }
+  .prayer-card {
+    grid-template-columns: 24px 1fr 70px 75px;
+    gap: 7px;
+  }
+  .prayer-time {
+    font-size: 13px;
+  }
+  .date-badge {
+    padding: 7px;
+    font-size: 8px;
+  }
+  .page-heading h1 {
+    font-size: 25px;
+  }
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.sound-picker {
+  width: 100%;
+  justify-content: flex-start;
+  text-align: start;
+  padding: 14px 16px;
+  gap: 12px;
+}
+.sound-picker span {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sound-picker small {
+  color: var(--muted);
+  font-size: 12px;
+}
+.sound-advanced {
+  margin: 14px 0;
+}
+.sound-advanced summary {
+  padding: 12px 0;
+  font-size: 13px;
+  color: var(--green);
+  cursor: pointer;
+}
+.subheading {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.sound-advanced .permission-row .secondary {
+  max-width: 65%;
+  overflow-wrap: anywhere;
+}
